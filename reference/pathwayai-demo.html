@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PathwayAI visual reference (reconstructed from v2 prompt)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: "#EEFBF3", 100: "#D6F5E2", 200: "#ABE9C6", 300: "#78D8A5",
+              400: "#43C382", 500: "#22A866", 600: "#158A53", 700: "#116E43",
+              800: "#0F5738", 900: "#0D482F"
+            }
+          },
+          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"] }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+  <!--
+    NOTE: The original attached index.html was not available in this agent store.
+    This file reconstructs the design system + shell patterns from PathwayAI_Cursor_Build_Prompt_v2.md
+    so the Next.js app can stay visually aligned.
+  -->
+  <div class="flex min-h-screen">
+    <aside class="flex w-60 flex-col border-r border-gray-200 bg-white">
+      <div class="flex items-center gap-3 px-5 py-5">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-600 text-white text-sm font-bold">P</div>
+        <div class="font-semibold">PathwayAI</div>
+      </div>
+      <nav class="space-y-0.5 px-3 text-sm">
+        <a class="block rounded-lg bg-brand-50 px-3 py-2.5 font-medium text-brand-700">My Journey</a>
+        <a class="block rounded-lg px-3 py-2.5 text-gray-600">Career Explorer</a>
+        <a class="block rounded-lg px-3 py-2.5 text-gray-600">Career Profile</a>
+        <a class="block rounded-lg px-3 py-2.5 text-gray-600">Gap Analysis</a>
+        <a class="block rounded-lg px-3 py-2.5 text-gray-600">Career GPS</a>
+      </nav>
+      <div class="mt-auto border-t border-gray-100 px-5 py-4 text-sm">
+        <div class="flex items-center gap-3">
+          <div class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-100 text-xs font-semibold text-brand-700">AC</div>
+          <div>
+            <div class="font-medium">Alex Chen</div>
+            <div class="text-xs text-gray-400">Student</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <main class="flex-1 p-6">
+      <header class="mb-6 border-b border-gray-100 pb-4">
+        <h1 class="text-base font-semibold">My Journey</h1>
+        <p class="text-xs text-gray-400">Progress ring + recent activity</p>
+      </header>
+      <div class="rounded-xl border border-gray-200 bg-white p-5">
+        <div class="mb-3 text-sm font-semibold">Design tokens</div>
+        <div class="flex flex-wrap gap-2">
+          <span class="rounded-lg bg-brand-50 px-2 py-1 text-xs text-brand-700">brand-50</span>
+          <span class="rounded-lg bg-brand-100 px-2 py-1 text-xs text-brand-700">brand-100</span>
+          <span class="rounded-lg bg-brand-600 px-2 py-1 text-xs text-white">brand-600 primary</span>
+          <span class="rounded-lg bg-brand-700 px-2 py-1 text-xs text-white">brand-700 hover</span>
+        </div>
+        <button class="mt-4 rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700">Primary CTA</button>
+        <button class="mt-4 ml-2 rounded-lg border border-brand-200 bg-brand-50 px-4 py-2 text-sm font-medium text-brand-700">Recalculate</button>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

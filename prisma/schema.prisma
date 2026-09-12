@@ -1,0 +1,129 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Career {
+  id                String   @id @default(cuid())
+  title             String
+  description       String
+  category          String
+  medianSalary      Int
+  demandTrend       String
+  requiredSkills    String
+  preferredSkills   String
+  typicalEducation  String
+  typicalExperience String
+  industries        String
+  adjacentCareers   String
+  sampleCompanies   String
+  students          Student[]
+}
+
+model Skill {
+  id          String @id @default(cuid())
+  name        String @unique
+  category    String
+  description String
+  evidence    Evidence[]
+  quizzes     QuizQuestion[]
+}
+
+model Student {
+  id                 String   @id @default(cuid())
+  name               String
+  targetCareerId     String?
+  targetCareer       Career?  @relation(fields: [targetCareerId], references: [id])
+  onboardingComplete Boolean  @default(true)
+  evidence           Evidence[]
+  actions            Action[]
+  opportunities      Opportunity[]
+  connections        Connection[]
+  events             Event[]
+  activityLog        ActivityLogEntry[]
+}
+
+model Evidence {
+  id          String   @id @default(cuid())
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id])
+  skillId     String
+  skill       Skill    @relation(fields: [skillId], references: [id])
+  sourceType  String
+  sourceLabel String
+  strength    String
+  createdAt   DateTime @default(now())
+}
+
+model Action {
+  id              String  @id @default(cuid())
+  studentId       String
+  student         Student @relation(fields: [studentId], references: [id])
+  type            String
+  title           String
+  why             String
+  relatedSkillIds String
+  status          String  @default("suggested")
+  weekOf          String
+  resourceLinks   String
+}
+
+model Opportunity {
+  id                     String  @id @default(cuid())
+  studentId              String
+  student                Student @relation(fields: [studentId], references: [id])
+  title                  String
+  company                String
+  type                   String
+  matchTier              String
+  satisfiedRequirements  String
+  uncertainRequirements  String
+  gapRequirements        String
+}
+
+model Connection {
+  id                 String  @id @default(cuid())
+  studentId          String
+  student            Student @relation(fields: [studentId], references: [id])
+  name               String
+  role               String
+  company            String
+  school             String
+  pathSummary        String
+  suggestedObjective String
+  draftMessage       String
+}
+
+model Event {
+  id               String  @id @default(cuid())
+  studentId        String
+  student          Student @relation(fields: [studentId], references: [id])
+  title            String
+  type             String
+  date             String
+  location         String
+  relevanceReason  String
+  followUpActions  String
+  attended         Boolean @default(false)
+}
+
+model QuizQuestion {
+  id            String @id @default(cuid())
+  skillId       String
+  skill         Skill  @relation(fields: [skillId], references: [id])
+  prompt        String
+  choices       String
+  correctIndex  Int
+}
+
+model ActivityLogEntry {
+  id        String   @id @default(cuid())
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id])
+  text      String
+  createdAt DateTime @default(now())
+}
